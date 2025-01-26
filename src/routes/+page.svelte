@@ -1,6 +1,106 @@
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import gsap from 'gsap';
+
+	onMount(async () => {
+		const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+		gsap.registerPlugin(ScrollTrigger);
+
+		const wheel = document.querySelector('.cards') as HTMLDivElement;
+		const cards = gsap.utils.toArray('.card') as HTMLDivElement[];
+		const total = cards.length;
+		const slice = (2 * Math.PI) / total;
+		const radius = window.innerWidth * 0.75;
+		const centerX = wheel.offsetWidth / 2;
+		const centerY = wheel.offsetHeight / 2;
+
+		gsap.set(wheel, {
+			y: centerY * 4.5
+		});
+
+		cards.forEach((card, i) => {
+			const angle = i * slice;
+			const initialRotation = angle * (180 / Math.PI) + 90;
+			const x = centerX + radius * Math.cos(angle);
+			const y = centerY + radius * Math.sin(angle);
+
+			gsap.set(card, {
+				left: x,
+				top: y,
+				rotate: initialRotation
+			});
+		});
+
+		gsap.to(wheel, {
+			rotate: () => -360,
+			ease: 'none',
+			duration: cards.length,
+			transformOrigin: 'center center',
+			scrollTrigger: {
+				start: 0,
+				end: 'max',
+				scrub: 1,
+				invalidateOnRefresh: true
+			}
+		});
+
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: '#scroll-wrapper',
+				start: 'top top',
+				end: 'bottom bottom',
+				scrub: 3
+				// markers: true
+			}
+		});
+
+		tl.from('.s1-t1', { scale: 2.4, opacity: 0 })
+
+			// stop for a second
+			.to({}, { duration: 1 })
+
+			.to('.s1-t1', { scale: 0.5, opacity: 0 })
+			.from('.s2-t1, .s2-t2', { y: '24rem', opacity: 0, stagger: 0.05 })
+			.from('.s2-img1', { y: '210%', opacity: 0 }, '<')
+
+			// stop for a second
+			.to({}, { duration: 1 })
+
+			.to('.s2-t1, .s2-t2', { opacity: 0, stagger: 0.05 })
+			.to('.s2-img1', { y: '-210%', opacity: 0 }, '<')
+
+			.from('.s3-t1,.s3-t2, .s3-t3', { y: '24rem', opacity: 0, stagger: 0.05 })
+			.from('.s3-img1', { y: '200%', opacity: 0 }, '<')
+
+			// stop for a second
+			.to({}, { duration: 1 })
+
+			.from('.s3-img2', { scale: 0.25, opacity: 0 })
+
+			// stop for a second
+			.to({}, { duration: 1 })
+
+			.to('.s3-t3', { opacity: 0 })
+			.from('.s3-t4', { opacity: 0 })
+			.fromTo('.s3-img3', { y: '100%', opacity: 0 }, { y: '-22.5%', opacity: 1 }, '<')
+
+			// stop for a second
+			.to({}, { duration: 1 })
+
+			.to('.s3-img3', { y: '-50%' })
+			.to('.s3-img1, .s3-img2', { opacity: 0 }, '<')
+
+			// stop for a second
+			.to({}, { duration: 1 })
+
+			.to('.s3-t1,.s3-t2, .s3-t4', { opacity: 0, stagger: 0.05 })
+			.to('.s3-img3', { y: '-100%', opacity: 0 }, '<');
+	});
+</script>
+
 <section class="h-[100svh]">
 	<div class="flex h-full flex-col items-center justify-between px-[4.5rem] py-14">
-		<header class="flex w-full items-center justify-between">
+		<header class="flex w-full items-center justify-between opacity-0">
 			<div aria-label="La Persona Logo" class="h-4 w-[11.56rem]">
 				<svg
 					width="100%"
@@ -57,45 +157,91 @@
 			<span class="font-bold">Elevate Your Presence</span> with a Bespoke Digital Experience
 		</h1>
 		<button
-			class="rounded-full bg-white px-6 py-5 text-sm font-bold capitalize leading-none text-dark"
+			class="rounded-full bg-white px-6 py-5 text-sm font-bold capitalize leading-none text-dark opacity-0"
 		>
 			Explore our craft
 		</button>
 	</div>
 </section>
 
-<section>
-	<div class="flex flex-col items-center px-[4.5rem] text-center">
-		<div class="my-[14rem] aspect-[25/15] w-[25rem] animate-pulse bg-neutral-800"></div>
-		<p class="max-w-[18rem] pb-[4.5rem] text-sm font-light leading-normal">
-			Experience the elegance of a card tailored to your identity. From the sleek phone wallpaper to
-			the interactive 3D design, each element reflects your brand with precision and style.
-		</p>
+<section class="relative h-screen overflow-hidden">
+	<div
+		class="cards absolute left-1/2 top-1/2 flex aspect-square w-[500px] -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-sky-500"
+	>
+		{#each Array.from({ length: 12 }, (_, i) => i) as i}
+			<div
+				class="card absolute left-0 top-0 aspect-[25/15] w-[25rem] -translate-x-1/2 -translate-y-1/2"
+			>
+				<div class="h-full w-full animate-pulse bg-neutral-800"></div>
+			</div>
+		{/each}
 	</div>
+	<p
+		class="absolute bottom-14 left-1/2 max-w-[18rem] -translate-x-1/2 pb-[4.5rem] text-center text-sm font-light leading-normal"
+	>
+		Experience the elegance of a card tailored to your identity. From the sleek phone wallpaper to
+		the interactive 3D design, each element reflects your brand with precision and style.
+	</p>
 </section>
 
-<section>
-	<div class="grid grid-cols-3 py-[13rem]">
-		<div class="flex h-full items-center justify-center">
-			<div class="grid max-w-[14rem] gap-3">
-				<h2 class="text-sm uppercase tracking-[0.13125rem]">
-					<span class="font-bold">Seamless</span> Experience
-				</h2>
-				<p class="text-sm font-light leading-relaxed">
-					Save contact information with a tap of a button,
-				</p>
+<div id="scroll-wrapper" class="relative h-[1000svh]">
+	<section class="sticky inset-0 top-0 h-[100svh]">
+		<div
+			class="s1-t1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-[2rem] font-light uppercase leading-[1.1] tracking-[0.3rem]"
+		>
+			<span class="font-bold">Tailored for You,</span> Step by Step.
+		</div>
+	</section>
+	<section class="sticky inset-0 top-0 h-[100svh]">
+		<div class="grid h-full grid-cols-3">
+			<div class="flex h-full items-center justify-center">
+				<div class="grid max-w-[14rem] gap-3">
+					<h2 class="s2-t1 text-sm uppercase tracking-[0.13125rem]">
+						<span class="font-bold">Bespoke</span> Design
+					</h2>
+					<p class="s2-t2 text-sm font-light leading-relaxed">
+						Your card, your identity, brought to life in 3D.
+					</p>
+				</div>
+			</div>
+			<div class="flex h-full items-center justify-center">
+				<div class="s2-img1 aspect-[25/15] w-[25rem] animate-pulse bg-neutral-800"></div>
+			</div>
+			<!-- <div class="flex h-full flex-col items-center justify-center"></div> -->
+		</div>
+	</section>
+	<section class="sticky inset-0 top-0 h-[100svh]">
+		<div class="grid h-full grid-cols-3">
+			<div class="flex h-full items-center justify-center">
+				<div class="grid max-w-[14rem] gap-3">
+					<h2 class="s3-t1 text-sm uppercase tracking-[0.13125rem]">
+						<span class="font-bold">Seamless</span> Experience
+					</h2>
+					<p class="s3-t2 text-sm font-light leading-relaxed">
+						Save contact information with a tap of a button,
+					</p>
+				</div>
+			</div>
+			<div class="relative flex h-full items-center justify-center">
+				<div class="s3-img1 h-[26.88rem] w-[15rem] rounded-xl border border-light"></div>
+				<div
+					class="s3-img2 absolute left-1/2 top-1/2 aspect-square w-[6.25rem] -translate-x-1/2 -translate-y-1/2 rounded-md border border-light"
+				></div>
+				<div
+					class="s3-img3 absolute left-1/2 top-1/2 h-[42.5rem] w-[23.75rem] -translate-x-1/2 -translate-y-1/2 rounded-xl border border-light"
+				></div>
+			</div>
+			<div class="flex h-full flex-col items-center justify-center">
+				<div
+					class="relative w-[8rem] -translate-x-[2.81rem] bg-red-500 text-sm font-light leading-relaxed"
+				>
+					<span class="s3-t3 absolute"> Pull up your custom lock screen...</span>
+					<span class="s3-t4 absolute w-[6.88rem]">Scan it and see the magic...</span>
+				</div>
 			</div>
 		</div>
-		<div class="flex h-full items-center justify-center">
-			<div class="h-[26.88rem] w-[15rem] rounded-xl border border-light"></div>
-		</div>
-		<div class="flex h-full flex-col items-center justify-center">
-			<p class="max-w-[6.88rem] -translate-x-[2.81rem] text-sm font-light leading-relaxed">
-				Scan it and see the magic...
-			</p>
-		</div>
-	</div>
-</section>
+	</section>
+</div>
 
 <section>
 	<div class="flex flex-col items-center px-[4.5rem] pb-[12.5rem] pt-[4.5rem]">
