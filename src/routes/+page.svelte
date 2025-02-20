@@ -154,7 +154,7 @@
 		<h1
 			class="max-w-[40rem] text-center text-[2rem] font-light uppercase leading-[1.1] tracking-[0.3rem]"
 		>
-			<span class="font-bold">Elevate Your Presence</span> with a Bespoke Digital Experience
+			<span class="font-bold">Elevate Your Presence</span> with a Bespoke Digital Experience Test
 		</h1>
 		<button
 			class="rounded-full bg-white px-6 py-5 text-sm font-bold capitalize leading-none text-dark opacity-0"
