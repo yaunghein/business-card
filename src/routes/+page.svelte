@@ -100,7 +100,7 @@
 
 <section class="h-[100svh]">
 	<div class="flex h-full flex-col items-center justify-between px-[4.5rem] py-14">
-		<header class="flex w-full items-center justify-between opacity-0">
+		<header class="flex w-full items-center justify-between">
 			<div aria-label="La Persona Logo" class="h-4 w-[11.56rem]">
 				<svg
 					width="100%"
