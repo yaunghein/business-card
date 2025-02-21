@@ -19,5 +19,12 @@ export default [
 		vcf: '/vcfs/minhtetdipar.vcf',
 		phone: '+65 87685983',
 		website: ''
+	},
+	{
+		id: 'hlayuparaye',
+		spline: 'https://my.spline.design/hlaayedigitalbusinesscard-0f8d94c20d7a457552d4c7becf417711/',
+		vcf: '/vcfs/hlayuparaye.vcf',
+		phone: '09775097767',
+		website: 'https://digiboxes.com.mm/'
 	}
 ];
