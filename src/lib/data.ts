@@ -12,7 +12,7 @@ export default [
 		vcf: '/vcfs/minhtetdipar.vcf',
 		phone: '+65 87685983',
 		website: 'https://thesandstudio.com/'
-	}
+	},
 	{
 		id: 'hannah',
 		spline: 'https://my.spline.design/hannahdigitalbusinesscard-4f2c2cf66e0ca057458df2088587a931/',
