@@ -21,7 +21,7 @@ export default [
 		website: ''
 	},
 	{
-		id: 'hlayuparaye',
+		id: 'hlayuparaye@digiboxes',
 		spline: 'https://my.spline.design/hlaayedigitalbusinesscard-0f8d94c20d7a457552d4c7becf417711/',
 		vcf: '/vcfs/hlayuparaye.vcf',
 		phone: '09775097767',
