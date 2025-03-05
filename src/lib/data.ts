@@ -26,5 +26,13 @@ export default [
 		vcf: '/vcfs/hlayuparaye.vcf',
 		phone: '09775097767',
 		website: 'https://digiboxes.com.mm/'
+	},
+	{
+		id: 'aungpyaekyaw',
+		spline:
+			'https://my.spline.design/aungpyaedigitalbusinesscard-7a4462430bd14bd687b2039df05de743/',
+		vcf: '/vcfs/apk.vcf',
+		phone: '0626365372',
+		website: 'https://www.la-persona.com/'
 	}
 ];
