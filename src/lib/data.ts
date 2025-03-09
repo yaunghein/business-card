@@ -34,5 +34,12 @@ export default [
 		vcf: '/vcfs/apk.vcf',
 		phone: '0626365372',
 		website: 'https://www.la-persona.com/'
+	},
+	{
+		id: 'yanaunghein',
+		spline: 'https://my.spline.design/yanaungdigitalbusinesscard-277b9e5b63017458131b2ddd22407e38/',
+		vcf: '/vcfs/yanaunghein.vcf',
+		phone: '0626366748',
+		website: 'https://www.la-persona.com/'
 	}
 ];
