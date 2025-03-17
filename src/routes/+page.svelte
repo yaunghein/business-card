@@ -82,12 +82,12 @@
 
 			.to('.s3-t3', { opacity: 0 })
 			.from('.s3-t4', { opacity: 0 })
-			.fromTo('.s3-img3', { y: '100%', opacity: 0 }, { y: '-22.5%', opacity: 1 }, '<')
+			.from('.s3-img3', { y: '200%', opacity: 0 }, '<')
 
 			// stop for a second
 			.to({}, { duration: 1 })
 
-			.to('.s3-img3', { y: '-50%' })
+			// .to('.s3-img3', { y: '-50%' })
 			.to('.s3-img1, .s3-img2', { opacity: 0 }, '<')
 
 			// stop for a second
@@ -157,16 +157,16 @@
 			<span class="font-bold">Elevate Your Presence</span> with a Bespoke Digital Experience Test
 		</h1>
 		<button
-			class="rounded-full bg-white px-6 py-5 text-sm font-bold capitalize leading-none text-dark opacity-0"
+			class="rounded-full bg-white px-6 py-5 text-sm font-bold capitalize leading-none text-dark"
 		>
 			Explore our craft
 		</button>
 	</div>
 </section>
 
-<section class="relative h-screen overflow-hidden">
+<section class="relative flex items-end justify-center overflow-hidden">
 	<div
-		class="cards absolute left-1/2 top-1/2 flex aspect-square w-[500px] -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-sky-500"
+		class="cards absolute left-1/2 top-[0rem] flex aspect-square w-[31.25rem] -translate-x-1/2 items-center justify-center"
 	>
 		{#each Array.from({ length: 12 }, (_, i) => i) as i}
 			<div
@@ -176,9 +176,7 @@
 			</div>
 		{/each}
 	</div>
-	<p
-		class="absolute bottom-14 left-1/2 max-w-[18rem] -translate-x-1/2 pb-[4.5rem] text-center text-sm font-light leading-normal"
-	>
+	<p class="max-w-[18rem] pt-[42rem] text-center text-sm font-light leading-normal">
 		Experience the elegance of a card tailored to your identity. From the sleek phone wallpaper to
 		the interactive 3D design, each element reflects your brand with precision and style.
 	</p>
@@ -205,7 +203,7 @@
 				</div>
 			</div>
 			<div class="flex h-full items-center justify-center">
-				<div class="s2-img1 aspect-[25/15] w-[25rem] animate-pulse bg-neutral-800"></div>
+				<div class="s2-img1 aspect-[25/15] w-[25rem] bg-neutral-800"></div>
 			</div>
 			<!-- <div class="flex h-full flex-col items-center justify-center"></div> -->
 		</div>
@@ -223,7 +221,15 @@
 				</div>
 			</div>
 			<div class="relative flex h-full items-center justify-center">
-				<div class="s3-img1 h-[26.88rem] w-[15rem] rounded-xl border border-light"></div>
+				<div
+					class="s3-img1 relative h-[24.35rem] w-[11.25rem] overflow-hidden rounded-xl border border-light"
+				>
+					<img
+						src="/images/s3-img1.jpg"
+						alt=""
+						class="absolute inset-0 h-full w-full object-cover"
+					/>
+				</div>
 				<div
 					class="s3-img2 absolute left-1/2 top-1/2 aspect-square w-[6.25rem] -translate-x-1/2 -translate-y-1/2 rounded-md border border-light"
 				></div>
