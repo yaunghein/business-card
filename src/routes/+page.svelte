@@ -1,10 +1,21 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
+	import Lenis from 'lenis';
 
 	onMount(async () => {
 		const { ScrollTrigger } = await import('gsap/ScrollTrigger');
 		gsap.registerPlugin(ScrollTrigger);
+
+		const lenis = new Lenis();
+
+		function raf(time: number) {
+			lenis.raf(time);
+			ScrollTrigger.update();
+			requestAnimationFrame(raf);
+		}
+
+		requestAnimationFrame(raf);
 
 		const wheel = document.querySelector('.cards') as HTMLDivElement;
 		const cards = gsap.utils.toArray('.card') as HTMLDivElement[];
@@ -295,16 +306,20 @@
 			</div>
 			<div class="flex flex-col items-center justify-center sm:h-full">
 				<div
-					class="w-[8rem]text-sm relative mx-auto h-[3rem] font-light leading-relaxed sm:-translate-x-[2.81rem]"
+					class="relative mx-auto h-[3rem] w-[8rem] text-sm font-light leading-relaxed sm:-translate-x-[2.81rem]"
 				>
 					<span
-						class="s3-t3 absolute left-1/2 top-1/2 w-[10rem] -translate-x-1/2 -translate-y-1/2 leading-tight sm:leading-normal"
+						class="s3-t3 absolute left-1/2 top-1/2 w-[8rem] -translate-x-1/2 -translate-y-1/2 leading-tight sm:hidden sm:leading-normal"
 					>
 						Pull up your custom lock screen...
 					</span>
 					<span
-						class="s3-t4 absolute left-1/2 top-1/2 w-[6.88rem] -translate-x-1/2 -translate-y-1/2 leading-tight sm:leading-normal"
+						class="s3-t4 absolute left-1/2 top-1/2 w-[6.88rem] -translate-x-1/2 -translate-y-1/2 leading-tight sm:hidden sm:leading-normal"
 					>
+						Scan it and see the magic...
+					</span>
+					<span class="s3-t3 absolute hidden sm:block"> Pull up your custom lock screen... </span>
+					<span class="s3-t4 absolute hidden w-[6.88rem] sm:block">
 						Scan it and see the magic...
 					</span>
 				</div>
