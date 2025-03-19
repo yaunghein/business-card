@@ -103,9 +103,11 @@
 </script>
 
 <section class="h-[100svh]">
-	<div class="flex h-full flex-col items-center justify-between px-[4.5rem] py-14">
+	<div
+		class="flex h-full flex-col items-center justify-between px-6 pb-9 pt-6 sm:px-[4.5rem] sm:pb-14 sm:pt-14"
+	>
 		<header class="flex w-full items-center justify-between">
-			<div aria-label="La Persona Logo" class="h-4 w-[11.56rem]">
+			<div aria-label="La Persona Logo" class="h-3 w-[8.7rem] sm:h-4 sm:w-[11.56rem]">
 				<svg
 					width="100%"
 					height="100%"
@@ -149,28 +151,46 @@
 				</svg>
 			</div>
 			<button
-				class="rounded-full bg-white px-6 py-5 text-sm font-bold capitalize leading-none text-dark"
+				class="hidden rounded-full bg-white px-6 py-5 text-sm font-bold capitalize leading-none text-dark sm:block"
 			>
 				Contact Us
 			</button>
+			<a href="/" class="size-9 sm:hidden">
+				<span class="sr-only">Email Us</span>
+				<svg
+					width="100%"
+					height="100%"
+					viewBox="0 0 39 39"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<rect width="39" height="39" rx="19.5" fill="white" />
+					<path
+						d="M11.8077 27C11.3026 27 10.875 26.825 10.525 26.475C10.175 26.125 10 25.6974 10 25.1923V13.8077C10 13.3026 10.175 12.875 10.525 12.525C10.875 12.175 11.3026 12 11.8077 12H27.1923C27.6974 12 28.125 12.175 28.475 12.525C28.825 12.875 29 13.3026 29 13.8077V25.1923C29 25.6974 28.825 26.125 28.475 26.475C28.125 26.825 27.6974 27 27.1923 27H11.8077ZM19.5 20.0577L11.5 14.9423V25.1923C11.5 25.2821 11.5288 25.3558 11.5865 25.4135C11.6442 25.4712 11.7179 25.5 11.8077 25.5H27.1923C27.2821 25.5 27.3558 25.4712 27.4135 25.4135C27.4712 25.3558 27.5 25.2821 27.5 25.1923V14.9423L19.5 20.0577ZM19.5 18.5L27.3463 13.5H11.6537L19.5 18.5ZM11.5 14.9423V13.5V25.1923C11.5 25.2821 11.5288 25.3558 11.5865 25.4135C11.6442 25.4712 11.7179 25.5 11.8077 25.5H11.5V14.9423Z"
+						fill="#121212"
+					/>
+				</svg>
+			</a>
 		</header>
 
 		<h1
-			class="max-w-[40rem] text-center text-[2rem] font-light uppercase leading-[1.1] tracking-[0.3rem]"
+			class="max-w-[40rem] text-center text-base font-light uppercase leading-[1.1] tracking-[0.2rem] sm:text-[2rem] sm:tracking-[0.3rem]"
 		>
 			<span class="font-bold">Elevate Your Presence</span> with a Bespoke Digital Experience Test
 		</h1>
 		<button
-			class="rounded-full bg-white px-6 py-5 text-sm font-bold capitalize leading-none text-dark"
+			class="rounded-full bg-white px-6 py-5 text-xs font-bold capitalize leading-none text-dark sm:text-sm"
 		>
 			Explore our craft
 		</button>
 	</div>
 </section>
 
-<section class="relative flex items-end justify-center overflow-hidden">
+<section
+	class="relative overflow-hidden pb-[4.5rem] pt-16 text-center sm:flex sm:items-end sm:justify-center sm:pb-0 sm:pt-0"
+>
 	<div
-		class="cards absolute left-1/2 top-[0rem] flex aspect-square w-[31.25rem] -translate-x-1/2 items-center justify-center"
+		class="cards absolute left-1/2 top-[0rem] hidden aspect-square w-[31.25rem] -translate-x-1/2 items-center justify-center sm:flex"
 	>
 		{#each Array.from({ length: 12 }, (_, i) => i) as i}
 			<div
@@ -180,53 +200,66 @@
 			</div>
 		{/each}
 	</div>
-	<p class="max-w-[18rem] pt-[42rem] text-center text-sm font-light leading-normal">
+	<h2
+		class="mx-auto mb-16 max-w-[12rem] text-center text-base font-light uppercase leading-[1.1] tracking-[0.2rem] sm:hidden sm:text-[2rem] sm:tracking-[0.3rem]"
+	>
+		Every Card,<span class="font-bold"><br />a Masterpiece</span>
+	</h2>
+	<p class="mx-auto max-w-[18rem] text-center text-sm font-light leading-normal sm:pt-[42rem]">
 		Experience the elegance of a card tailored to your identity. From the sleek phone wallpaper to
 		the interactive 3D design, each element reflects your brand with precision and style.
 	</p>
 </section>
 
 <div id="scroll-wrapper" class="relative h-[1000svh]">
-	<section class="sticky inset-0 top-0 h-[100svh]">
+	<section class="sticky inset-0 top-0 h-[100svh] overflow-hidden">
 		<div
-			class="s1-t1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-[2rem] font-light uppercase leading-[1.1] tracking-[0.3rem]"
+			class="s1-t1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-base font-light uppercase leading-[1.1] tracking-[0.3rem] sm:text-[2rem]"
 		>
 			<span class="font-bold">Tailored for You,</span> Step by Step.
 		</div>
 	</section>
 	<section class="sticky inset-0 top-0 h-[100svh]">
-		<div class="grid h-full grid-cols-3">
-			<div class="flex h-full items-center justify-center">
-				<div class="grid max-w-[14rem] gap-3">
+		<div
+			class="flex h-full flex-col items-center px-6 py-16 text-center sm:grid sm:grid-cols-3 sm:px-0 sm:py-0 sm:text-left"
+		>
+			<div class="flex items-center justify-center sm:h-full">
+				<div class="grid max-w-[14rem] gap-1 sm:gap-3">
 					<h2 class="s2-t1 text-sm uppercase tracking-[0.13125rem]">
 						<span class="font-bold">Bespoke</span> Design
 					</h2>
-					<p class="s2-t2 text-sm font-light leading-relaxed">
+					<p class="s2-t2 text-sm font-light leading-tight sm:leading-relaxed">
 						Your card, your identity, brought to life in 3D.
 					</p>
 				</div>
 			</div>
-			<div class="flex h-full items-center justify-center">
-				<div class="s2-img1 aspect-[25/15] w-[25rem] bg-neutral-800"></div>
+			<div
+				class="absolute left-1/2 top-1/2 flex h-full w-[88%] -translate-x-1/2 -translate-y-1/2 items-center justify-center sm:relative sm:w-auto"
+			>
+				<div class="s2-img1 aspect-[25/15] w-full bg-neutral-800 sm:w-[25rem]"></div>
 			</div>
 			<!-- <div class="flex h-full flex-col items-center justify-center"></div> -->
 		</div>
 	</section>
 	<section class="sticky inset-0 top-0 h-[100svh]">
-		<div class="grid h-full grid-cols-3">
-			<div class="flex h-full items-center justify-center">
-				<div class="grid max-w-[14rem] gap-3">
+		<div
+			class="flex h-full flex-col items-center justify-between px-6 py-6 text-center sm:grid sm:grid-cols-3 sm:px-0 sm:py-0 sm:text-left"
+		>
+			<div class="flex items-center justify-center sm:h-full">
+				<div class="grid max-w-[14rem] gap-1 sm:gap-3">
 					<h2 class="s3-t1 text-sm uppercase tracking-[0.13125rem]">
 						<span class="font-bold">Seamless</span> Experience
 					</h2>
-					<p class="s3-t2 text-sm font-light leading-relaxed">
+					<p class="s3-t2 text-sm font-light leading-tight sm:leading-normal">
 						Save contact information with a tap of a button,
 					</p>
 				</div>
 			</div>
-			<div class="relative flex h-full items-center justify-center">
+			<div
+				class="absolute left-1/2 top-1/2 flex h-full -translate-x-1/2 -translate-y-1/2 items-center justify-center sm:relative"
+			>
 				<div
-					class="s3-img1 relative h-[24.35rem] w-[11.25rem] overflow-hidden rounded-xl border border-light"
+					class="s3-img1 relative aspect-[1/2.16] w-[10rem] overflow-hidden rounded-xl border border-light sm:w-[11.25rem]"
 				>
 					<img
 						src="/images/s3-img1.jpg"
@@ -235,7 +268,7 @@
 					/>
 				</div>
 				<div
-					class="s3-img2 absolute left-1/2 top-1/2 h-[38.25rem] w-[17.75rem] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl border border-light"
+					class="s3-img2 absolute left-1/2 top-1/2 aspect-[1/2.15] w-[13rem] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl border border-light sm:w-[17.75rem]"
 				>
 					<img
 						src="/images/s3-scan-1.png"
@@ -260,12 +293,20 @@
 					</video>
 				</div>
 			</div>
-			<div class="flex h-full flex-col items-center justify-center">
+			<div class="flex flex-col items-center justify-center sm:h-full">
 				<div
-					class="relative w-[8rem] -translate-x-[2.81rem] bg-red-500 text-sm font-light leading-relaxed"
+					class="w-[8rem]text-sm relative mx-auto h-[3rem] font-light leading-relaxed sm:-translate-x-[2.81rem]"
 				>
-					<span class="s3-t3 absolute"> Pull up your custom lock screen...</span>
-					<span class="s3-t4 absolute w-[6.88rem]">Scan it and see the magic...</span>
+					<span
+						class="s3-t3 absolute left-1/2 top-1/2 w-[10rem] -translate-x-1/2 -translate-y-1/2 leading-tight sm:leading-normal"
+					>
+						Pull up your custom lock screen...
+					</span>
+					<span
+						class="s3-t4 absolute left-1/2 top-1/2 w-[6.88rem] -translate-x-1/2 -translate-y-1/2 leading-tight sm:leading-normal"
+					>
+						Scan it and see the magic...
+					</span>
 				</div>
 			</div>
 		</div>
@@ -273,40 +314,42 @@
 </div>
 
 <section>
-	<div class="flex flex-col items-center px-[4.5rem] pb-[12.5rem] pt-[4.5rem]">
+	<div
+		class="flex flex-col items-center px-6 pb-16 pt-16 sm:px-[4.5rem] sm:pb-[12.5rem] sm:pt-[4.5rem]"
+	>
 		<h2
-			class="max-w-[40rem] text-center text-[2rem] font-light uppercase leading-[1.1] tracking-[0.3rem]"
+			class="max-w-[16rem] text-center text-base font-light uppercase leading-[1.1] tracking-[0.1rem] sm:max-w-[40rem] sm:text-[2rem] sm:tracking-[0.3rem]"
 		>
 			Get your <span class="font-bold">bespoke digital Business card</span> and start making connections...
 		</h2>
 
-		<div class="trans mt-[12.5rem] grid -translate-x-[2rem] gap-[4.5rem]">
-			<div class="grid grid-cols-2 gap-[8rem]">
-				<div class="text-right text-sm font-light leading-normal">Single Card:</div>
+		<div class="mt-[4.5rem] grid -translate-x-[2rem] gap-12 sm:mt-[12.5rem] sm:gap-[4.5rem]">
+			<div class="grid grid-cols-2 gap-4 sm:gap-[8rem]">
+				<div class="text-right text-xs font-light leading-normal sm:text-sm">Single Card:</div>
 				<div class="grid gap-8">
-					<div class="max-w-[17rem] text-sm font-light leading-normal">
+					<div class="max-w-[17rem] text-xs font-light leading-normal sm:text-sm">
 						<span class="font-bold">2,000</span> Baht per Card
 					</div>
 				</div>
 			</div>
-			<div class="grid grid-cols-2 gap-[8rem]">
-				<div class="text-right text-sm font-light leading-normal">Bulk Discounts:</div>
+			<div class="grid grid-cols-2 gap-4 sm:gap-[8rem]">
+				<div class="text-right text-xs font-light leading-normal sm:text-sm">Bulk Discounts:</div>
 				<div class="grid gap-8">
-					<div class="max-w-[17rem] text-sm font-light leading-normal">
+					<div class="max-w-[17rem] text-xs font-light leading-normal sm:text-sm">
 						Special rates for orders of 5 or more cards with the same design.
 					</div>
-					<div class="max-w-[17rem] text-sm font-light leading-none">
+					<div class="max-w-[17rem] text-xs font-light leading-none sm:text-sm">
 						<span class="font-bold">8,000</span> Baht for 5 cards (1,600 Baht per card)
 					</div>
-					<div class="-mt-5 max-w-[17rem] text-sm font-light leading-none">
+					<div class="max-w-[17rem] text-xs font-light leading-none sm:-mt-5 sm:text-sm">
 						<span class="font-bold">12,000</span> Baht for 7 cards (1,400 Baht per card)
 					</div>
 				</div>
 			</div>
-			<div class="grid grid-cols-2 gap-[8rem]">
-				<div class="text-right text-sm font-light leading-normal">Referral Program:</div>
+			<div class="grid grid-cols-2 gap-4 sm:gap-[8rem]">
+				<div class="text-right text-xs font-light leading-normal sm:text-sm">Referral Program:</div>
 				<div class="grid gap-8">
-					<div class="max-w-[17rem] text-sm font-light leading-normal">
+					<div class="max-w-[17rem] text-xs font-light leading-normal sm:text-sm">
 						Earn rewards for every successful referral. <span class="underline underline-offset-4">
 							Contact us
 						</span> to discuss.
@@ -318,20 +361,26 @@
 </section>
 
 <section>
-	<div class="flex flex-col items-center px-[4.5rem] text-center">
+	<div class="flex flex-col items-center px-[4.5rem] pt-16 text-center sm:pt-0">
 		<h2
-			class="max-w-[30.19rem] text-center text-[2rem] font-light uppercase leading-[1.1] tracking-[0.3rem]"
+			class="max-w-[30.19rem] text-center text-base font-light uppercase leading-[1.1] tracking-[0.1rem] sm:text-[2rem] sm:tracking-[0.3rem]"
 		>
-			Your Brand Deserves the Best <span class="font-bold">the Best</span>
+			Your Brand Deserves <span class="font-bold">the Best</span>
 		</h2>
-		<div class="my-[10.69rem] aspect-[18/11] w-[18.88rem] animate-pulse bg-neutral-800"></div>
-		<div class="mb-14 flex items-center gap-14">
+		<div
+			class="my-16 aspect-[18/11] w-[18.88rem] animate-pulse bg-neutral-800 sm:my-[10.69rem]"
+		></div>
+		<div class="mb-8 flex flex-col items-center gap-8 sm:mb-14 sm:flex-row sm:gap-14">
 			<button
-				class="rounded-full bg-white px-6 py-5 text-sm font-bold capitalize leading-none text-dark"
+				class="rounded-full bg-white px-6 py-5 text-xs font-bold capitalize leading-none text-dark sm:text-sm"
 			>
 				Get Your Card Now
 			</button>
-			<button class="text-sm underline underline-offset-4"> Schedule a Free Consultation </button>
+			<button
+				class="sm:max-w-auto mx-auto max-w-[7rem] text-xs underline underline-offset-4 sm:text-sm"
+			>
+				Schedule a Free Consultation
+			</button>
 		</div>
 		<p class="mb-6 text-[0.625rem] font-light leading-normal">
 			COPYRIGHT © LA PERSONA 2025. ALL RIGHTS RESERVED.
