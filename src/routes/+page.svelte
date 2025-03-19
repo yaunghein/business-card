@@ -75,26 +75,30 @@
 			// stop for a second
 			.to({}, { duration: 1 })
 
-			.from('.s3-img2', { scale: 0.25, opacity: 0 })
-
-			// stop for a second
-			.to({}, { duration: 1 })
-
 			.to('.s3-t3', { opacity: 0 })
 			.from('.s3-t4', { opacity: 0 })
-			.from('.s3-img3', { y: '200%', opacity: 0 }, '<')
+			.from('.s3-img2', { y: '200%', opacity: 0 }, '<')
+			.from('.s3-scan-1', { opacity: 0 }, '<75%')
+
+			// stop for a second
+			// .to({}, { duration: 1 })
+
+			.from('.s3-scan-2', { opacity: 0 })
+			.to('.s3-scan-2', { opacity: 0 })
+			.to('.s3-scan-2', { opacity: 1 })
+			.to('.s3-scan-2', { opacity: 0 })
 
 			// stop for a second
 			.to({}, { duration: 1 })
 
-			// .to('.s3-img3', { y: '-50%' })
-			.to('.s3-img1, .s3-img2', { opacity: 0 }, '<')
+			.from('.s3-video', { opacity: 0 })
 
 			// stop for a second
-			.to({}, { duration: 1 })
+			.to({}, { duration: 2 })
 
-			.to('.s3-t1,.s3-t2, .s3-t4', { opacity: 0, stagger: 0.05 })
-			.to('.s3-img3', { y: '-100%', opacity: 0 }, '<');
+			.set('.s3-img1', { opacity: 0 })
+			.to('.s3-img2', { y: '-200%', opacity: 0 })
+			.to('.s3-t1,.s3-t2, .s3-t4', { opacity: 0, stagger: 0.05 }, '<50%');
 	});
 </script>
 
@@ -231,11 +235,30 @@
 					/>
 				</div>
 				<div
-					class="s3-img2 absolute left-1/2 top-1/2 aspect-square w-[6.25rem] -translate-x-1/2 -translate-y-1/2 rounded-md border border-light"
-				></div>
-				<div
-					class="s3-img3 absolute left-1/2 top-1/2 h-[42.5rem] w-[23.75rem] -translate-x-1/2 -translate-y-1/2 rounded-xl border border-light"
-				></div>
+					class="s3-img2 absolute left-1/2 top-1/2 h-[38.25rem] w-[17.75rem] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl border border-light"
+				>
+					<img
+						src="/images/s3-scan-1.png"
+						alt=""
+						class="s3-scan-1 absolute inset-0 h-full w-full"
+					/>
+					<img
+						src="/images/s3-scan-2.png"
+						alt=""
+						class="s3-scan-2 absolute inset-0 h-full w-full"
+					/>
+					<video
+						class="s3-video absolute inset-0 h-full w-full object-cover"
+						controls={false}
+						muted
+						loop
+						autoplay
+					>
+						<source src="/images/s3-video.mp4" type="video/mp4" />
+						<track kind="captions" />
+						Your browser does not support the video tag.
+					</video>
+				</div>
 			</div>
 			<div class="flex h-full flex-col items-center justify-center">
 				<div
