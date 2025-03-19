@@ -185,9 +185,9 @@
 		</header>
 
 		<h1
-			class="max-w-[40rem] text-center text-base font-light uppercase leading-[1.1] tracking-[0.2rem] sm:text-[2rem] sm:tracking-[0.3rem]"
+			class="max-w-[20rem] text-center text-base font-light uppercase leading-[1.1] tracking-[0.2rem] sm:max-w-[40rem] sm:text-[2rem] sm:tracking-[0.3rem]"
 		>
-			<span class="font-bold">Elevate Your Presence</span> with a Bespoke Digital Experience Test
+			<span class="font-bold">Elevate Your Presence</span> with a Bespoke Digital Experience
 		</h1>
 		<button
 			class="rounded-full bg-white px-6 py-5 text-xs font-bold capitalize leading-none text-dark sm:text-sm"
