@@ -133,5 +133,29 @@ export default [
 				label: 'LinkedIn'
 			}
 		]
+	},
+	{
+		id: 'minhtetmyet',
+		name: 'Min Htet Myet',
+		spline: 'https://my.spline.design/untitled-S3y3USqNr1cyAGIj14q0ugT8/',
+		vcf: '/vcfs/minhtetmyet.vcf',
+		phone: '0626366748',
+		links: [
+			{
+				icon: '/images/facebook.png',
+				href: 'https://www.facebook.com/khris.min.2411',
+				label: 'Facebook'
+			},
+			{
+				icon: '/images/instagram.png',
+				href: 'https://www.instagram.com/minmiles_/',
+				label: 'Instagram'
+			},
+			{
+				icon: '/images/linkedin.png',
+				href: 'https://www.linkedin.com/in/min-htet/',
+				label: 'LinkedIn'
+			}
+		]
 	}
 ];
