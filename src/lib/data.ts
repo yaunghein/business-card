@@ -137,10 +137,15 @@ export default [
 	{
 		id: 'minhtetmyet',
 		name: 'Min Htet Myet',
-		spline: 'https://my.spline.design/untitled-S3y3USqNr1cyAGIj14q0ugT8/',
+		spline: 'https://my.spline.design/untitled-tRG860P00Pzj7FfnRp8PxZNH',
 		vcf: '/vcfs/minhtetmyet.vcf',
 		phone: '0626366748',
 		links: [
+			{
+				icon: 'world',
+				href: 'https://m.me/khris.min.2411',
+				label: 'Direct Message'
+			},
 			{
 				icon: '/images/facebook.png',
 				href: 'https://www.facebook.com/khris.min.2411',
