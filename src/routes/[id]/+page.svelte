@@ -62,7 +62,7 @@
 	</div>
 
 	<div
-		class="fixed inset-0 top-auto -mb-[1px] w-full scale-[1.005] rounded-t-xl border border-white/10 bg-[#121212] py-6 transition duration-[750ms] sm:mx-auto sm:max-w-96 {isMenuOpen
+		class="fixed inset-0 top-auto -mb-[1px] w-full scale-[1.005] rounded-t-xl border border-white/10 bg-[#121212] py-6 transition duration-[750ms] sm:mx-auto sm:max-w-[26rem] {isMenuOpen
 			? 'translate-y-0'
 			: 'translate-y-full'}"
 	>
@@ -84,7 +84,9 @@
 			>
 				Explore
 			</div>
-			<div class="hide-scrollbar mt-8 flex gap-3 overflow-x-scroll px-5">
+			<div
+				class="hide-scrollbar mt-8 flex items-center justify-center gap-3 overflow-x-scroll px-5"
+			>
 				{#each data.person.links as link, index}
 					{@const isImage = link.icon.includes('.')}
 					{#if isImage}
