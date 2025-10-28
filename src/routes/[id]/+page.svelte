@@ -4,6 +4,7 @@
 	import Close from '$lib/components/icons/close.svelte';
 	import World from '$lib/components/icons/world.svelte';
 	import ArrowDown from '$lib/components/icons/arrow-down.svelte';
+	import DirectMessage from '$lib/components/icons/direct-message.svelte';
 
 	let { data } = $props();
 
@@ -11,7 +12,8 @@
 
 	const iconMap = {
 		world: World,
-		arrowDown: ArrowDown
+		arrowDown: ArrowDown,
+		directMessage: DirectMessage
 	} as const;
 </script>
 
@@ -28,7 +30,11 @@
 		frameborder="0"
 		allow="autoplay"
 	></iframe>
-	<div class="absolute bottom-8 left-0 right-0 flex w-full gap-3 px-5 sm:mx-auto sm:max-w-96">
+	<div
+		class="absolute bottom-8 left-0 right-0 flex w-full gap-3 px-5 transition duration-[750ms] sm:mx-auto sm:max-w-96 {isMenuOpen
+			? 'translate-y-full'
+			: 'translate-y-0'}"
+	>
 		<a
 			href={data.person.vcf}
 			download="{data.person.id}.vcf"

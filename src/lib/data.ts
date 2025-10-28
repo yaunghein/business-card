@@ -142,7 +142,7 @@ export default [
 		phone: '0626366748',
 		links: [
 			{
-				icon: 'world',
+				icon: 'directMessage',
 				href: 'https://m.me/khris.min.2411',
 				label: 'Direct Message'
 			},
