@@ -21,7 +21,7 @@
 	<title>{data.person.name} | La Persona</title>
 </svelte:head>
 
-<div class="relative z-10 h-[100svh] w-screen overflow-hidden">
+<div class="relative z-10 h-[100dvh] w-screen overflow-hidden">
 	<!-- Spline Scene -->
 	<iframe
 		title="Spline Scene"

@@ -2,7 +2,7 @@
 	<title>Coming Soon | La Persona</title>
 </svelte:head>
 
-<div class="relative z-10 h-[100svh] w-screen overflow-hidden">
+<div class="relative z-10 h-[100dvh] w-screen overflow-hidden">
 	<iframe
 		title="Spline Scene"
 		src="https://my.spline.design/lapersonawebsite-SdaZRlsNHX97xutZ9KAlXycj/"

@@ -113,7 +113,7 @@
 	});
 </script>
 
-<section class="h-[100svh]">
+<section class="h-[100dvh]">
 	<div
 		class="flex h-full flex-col items-center justify-between px-6 pb-9 pt-6 sm:px-[4.5rem] sm:pb-14 sm:pt-14"
 	>
@@ -223,14 +223,14 @@
 </section>
 
 <div id="scroll-wrapper" class="relative h-[1000svh]">
-	<section class="sticky inset-0 top-0 h-[100svh] overflow-hidden">
+	<section class="sticky inset-0 top-0 h-[100dvh] overflow-hidden">
 		<div
 			class="s1-t1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-base font-light uppercase leading-[1.1] tracking-[0.3rem] sm:text-[2rem]"
 		>
 			<span class="font-bold">Tailored for You,</span> Step by Step.
 		</div>
 	</section>
-	<section class="sticky inset-0 top-0 h-[100svh]">
+	<section class="sticky inset-0 top-0 h-[100dvh]">
 		<div
 			class="flex h-full flex-col items-center px-6 py-16 text-center sm:grid sm:grid-cols-3 sm:px-0 sm:py-0 sm:text-left"
 		>
@@ -252,7 +252,7 @@
 			<!-- <div class="flex h-full flex-col items-center justify-center"></div> -->
 		</div>
 	</section>
-	<section class="sticky inset-0 top-0 h-[100svh]">
+	<section class="sticky inset-0 top-0 h-[100dvh]">
 		<div
 			class="flex h-full flex-col items-center justify-between px-6 py-6 text-center sm:grid sm:grid-cols-3 sm:px-0 sm:py-0 sm:text-left"
 		>
