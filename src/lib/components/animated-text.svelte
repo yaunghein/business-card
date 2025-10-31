@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="relative w-full overflow-hidden leading-[1] tracking-[0.1rem] opacity-90 transition-all duration-500 group-hover:opacity-100"
+	class="relative w-full overflow-hidden leading-[0.8] tracking-[0.1rem] opacity-90 transition-all duration-500 group-hover:opacity-100"
 >
 	<span class="sr-only">{text}</span>
 

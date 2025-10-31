@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { scale } from 'svelte/transition';
 	import Lenis from 'lenis';
+	import gsap from 'gsap';
 	import Logo from '$lib/components/svgs/logo.svelte';
 	import AnimatedText from '$lib/components/animated-text.svelte';
 	import TwoColumn from '$lib/components/two-column.svelte';
@@ -11,15 +13,69 @@
 	import CheckboxChecked from '$lib/components/icons/checkbox-checked.svelte';
 	import CheckboxUnchecked from '$lib/components/icons/checkbox-unchecked.svelte';
 
-	onMount(() => {
-		// new Lenis({ autoRaf: true });
+	const SECTIONS = {
+		MASTERPIECES: 'masterpieces',
+		HOW_IT_WORKS: 'how-it-works',
+		WHY_US: 'why-us',
+		COMMISSION_US: 'commission-us'
+	};
+
+	let isHeaderVisible = $state(true);
+
+	type currentSectionType = (typeof SECTIONS)[keyof typeof SECTIONS] | null;
+	let currentSection: currentSectionType = $state(null);
+
+	onMount(async () => {
+		const lenis = new Lenis();
+		const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+		gsap.registerPlugin(ScrollTrigger);
+
+		function raf(time: number) {
+			lenis.raf(time);
+			ScrollTrigger.update();
+			requestAnimationFrame(raf);
+		}
+
+		requestAnimationFrame(raf);
+
+		// header visibility check
+		ScrollTrigger.create({
+			trigger: 'header',
+			start: 'top top',
+			end: 'bottom top',
+			onEnter: () => (isHeaderVisible = true),
+			onLeave: () => (isHeaderVisible = false),
+			onEnterBack: () => (isHeaderVisible = true)
+		});
+
+		// sections visibility check
+		const sections = Object.values(SECTIONS)
+			.map((id) => {
+				const element = document.getElementById(id);
+				return element as HTMLDivElement;
+			})
+			.filter(Boolean) as HTMLDivElement[];
+
+		sections.forEach((section, index) => {
+			ScrollTrigger.create({
+				trigger: section,
+				start: 'top 50%',
+				end: 'bottom 50%',
+				onEnter: () => (currentSection = section.id as currentSectionType),
+				onLeave: () => (currentSection = null),
+				onEnterBack: () => (currentSection = section.id as currentSectionType),
+				onLeaveBack: () => index === 0 && (currentSection = null)
+			});
+		});
 	});
 
+	$inspect({ currentSection });
+
 	const navItems = [
-		{ label: 'The Masterpieces', href: '/' },
-		{ label: 'How It Works', href: '/' },
-		{ label: 'Why Us?', href: '/' },
-		{ label: 'commission Us', href: '/' }
+		{ label: 'The Masterpieces', href: `#${SECTIONS.MASTERPIECES}` },
+		{ label: 'How It Works', href: `#${SECTIONS.HOW_IT_WORKS}` },
+		{ label: 'Why Us?', href: `#${SECTIONS.WHY_US}` },
+		{ label: 'commission Us', href: `#${SECTIONS.COMMISSION_US}` }
 	];
 	const masterpieces = [
 		{ image: '/images/iPhone 13-1.webp', alt: 'Demo 1' },
@@ -38,17 +94,31 @@
 			<Logo />
 		</div>
 	</div>
-	<nav class="hidden items-center justify-between py-6 sm:flex">
-		{#each navItems as item}
-			<a
-				href={item.href}
-				class="group text-sm font-light uppercase leading-[1.1] tracking-[0.28rem]"
-			>
-				<AnimatedText text={item.label} />
-			</a>
-		{/each}
-	</nav>
 </header>
+
+<nav
+	class="sticky top-0 z-10 hidden items-center justify-between bg-dark px-4 sm:flex sm:px-[4.5rem]"
+>
+	{#each navItems as item}
+		<a
+			href={item.href}
+			class="group relative py-6 text-sm font-light uppercase leading-[1.1] tracking-[0.28rem]"
+		>
+			<AnimatedText text={item.label} />
+			<div
+				class="absolute inset-0 top-auto h-[1px] w-full bg-white transition-all duration-1000 {currentSection ===
+				item.href.split('#')[1]
+					? 'scale-x-100'
+					: 'scale-x-0'}"
+			></div>
+		</a>
+	{/each}
+	<div
+		class="absolute inset-0 top-auto h-[1px] w-full bg-white/10 transition-all duration-1000 {isHeaderVisible
+			? 'scale-x-0'
+			: 'scale-x-100'}"
+	></div>
+</nav>
 
 <section class="">
 	<h1
@@ -61,20 +131,20 @@
 	>
 		<a
 			href="/"
-			class="group w-[15rem] rounded-full border border-white/10 py-3 text-xs font-light uppercase leading-[1] tracking-[0.1rem] transition-all duration-500 hover:bg-[#1d1d1d] sm:w-[19.05rem] sm:py-4 sm:text-sm"
+			class="group w-[15rem] rounded-full border border-white/10 py-3 text-xs font-light uppercase leading-[1] tracking-[0.1rem] transition-all duration-500 hover:bg-white hover:text-dark sm:w-[19.05rem] sm:py-4 sm:text-sm"
 		>
 			<AnimatedText text="explore our craft" />
 		</a>
 		<a
 			href="/"
-			class="group w-[15rem] rounded-full border border-white/10 py-3 text-xs font-light uppercase leading-[1] tracking-[0.1rem] transition-all duration-500 hover:bg-[#1d1d1d] sm:w-[19.05rem] sm:py-4 sm:text-sm"
+			class="group w-[15rem] rounded-full border border-white/10 py-3 text-xs font-light uppercase leading-[1] tracking-[0.1rem] transition-all duration-500 hover:bg-white hover:text-dark sm:w-[19.05rem] sm:py-4 sm:text-sm"
 		>
 			<AnimatedText text="commission your card" />
 		</a>
 	</div>
 </section>
 
-<section class="py-[3.5rem] sm:py-[7.5rem]">
+<section class="py-[3.5rem] sm:py-[7.5rem]" id={SECTIONS.MASTERPIECES}>
 	<h2
 		class="mx-auto mb-[4.5rem] max-w-[20rem] text-center text-xl font-light uppercase leading-[1.5] tracking-[0.2rem] sm:max-w-[40rem] sm:text-[2.5rem] sm:tracking-[0.3rem]"
 	>
@@ -98,7 +168,7 @@
 	/>
 </section>
 
-<section class="py-[3.5rem] sm:py-[7.5rem]">
+<section class="py-[3.5rem] sm:py-[7.5rem]" id={SECTIONS.HOW_IT_WORKS}>
 	<div
 		class="sm:min-h-auto flex min-h-[100svh] items-center justify-center sm:block sm:py-[23.5rem]"
 	>
@@ -115,7 +185,7 @@
 	</div>
 </section>
 
-<section class="py-[3.5rem] sm:py-[7.5rem]">
+<section class="py-[3.5rem] sm:py-[7.5rem]" id={SECTIONS.WHY_US}>
 	<h2
 		class="mx-auto mb-[1.5rem] max-w-[20rem] text-center text-xl font-light uppercase leading-[1.5] tracking-[0.2rem] sm:mb-[4.5rem] sm:max-w-[40rem] sm:text-[2.5rem] sm:tracking-[0.3rem]"
 	>
@@ -159,7 +229,7 @@
 	</div>
 </section>
 
-<section class="pb-[3.5rem] pt-0 sm:pb-[7.5rem] sm:pt-[7.5rem]">
+<section class="pb-[3.5rem] pt-0 sm:pb-[7.5rem] sm:pt-[7.5rem]" id={SECTIONS.COMMISSION_US}>
 	<h2
 		class="mx-auto mb-[4.5rem] max-w-[20rem] text-center text-xl font-light uppercase leading-[1.5] tracking-[0.2rem] sm:max-w-[40rem] sm:text-[2.5rem] sm:tracking-[0.3rem]"
 	>
