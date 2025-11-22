@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { HUBSPOT_PORTAL_ID, HUBSPOT_FORM_GUID_LEAD } from '$env/static/private';
+import { HUBSPOT_PORTAL_ID, HUBSPOT_FORM_GUID_FOUNDERS_CLUB } from '$env/static/private';
 import type { Actions } from '@sveltejs/kit';
 
 const CONSENT_TEXT =
@@ -9,16 +9,26 @@ export const actions: Actions = {
 	default: async ({ request }) => {
 		try {
 			const formData = await request.formData();
-			const { email, firstname, lastname, phone, customer_groups, message } =
-				Object.fromEntries(formData);
-			const url = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID_LEAD}`;
+			const {
+				email,
+				firstname,
+				lastname,
+				phone,
+				prefer_contact_address,
+				company,
+				hs_seniority,
+				message
+			} = Object.fromEntries(formData);
+			const url = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID_FOUNDERS_CLUB}`;
 			const body = {
 				submittedAt: new Date().getTime(),
 				fields: [
 					{ objectTypeId: '0-1', name: 'email', value: email },
 					{ objectTypeId: '0-1', name: 'firstname', value: `${firstname} ${lastname}` },
 					{ objectTypeId: '0-1', name: 'phone', value: phone },
-					{ objectTypeId: '0-1', name: 'customer_groups', value: customer_groups },
+					{ objectTypeId: '0-1', name: 'prefer_contact_address', value: prefer_contact_address },
+					{ objectTypeId: '0-1', name: 'company', value: company },
+					{ objectTypeId: '0-1', name: 'hs_seniority', value: hs_seniority },
 					{ objectTypeId: '0-1', name: 'message', value: message }
 				],
 				legalConsentOptions: {
