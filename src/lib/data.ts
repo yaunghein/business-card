@@ -114,7 +114,7 @@ export default [
 		links: [
 			{
 				icon: 'world',
-				href: 'https://www.duodesignlab.com/about/yan-aung-hein',
+				href: 'https://www.duodesignlab.com/about/yan-aung-hein/',
 				label: 'Go to Website'
 			},
 			{
@@ -143,12 +143,12 @@ export default [
 		links: [
 			{
 				icon: 'directMessage',
-				href: 'https://m.me/khris.min.2411',
+				href: 'https://m.me/khris.min.2411/',
 				label: 'Direct Message'
 			},
 			{
 				icon: '/images/facebook.png',
-				href: 'https://www.facebook.com/khris.min.2411',
+				href: 'https://www.facebook.com/khris.min.2411/',
 				label: 'Facebook'
 			},
 			{

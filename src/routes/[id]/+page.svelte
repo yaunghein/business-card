@@ -84,14 +84,13 @@
 			>
 				Explore
 			</div>
-			<div
-				class="hide-scrollbar mt-8 flex items-center justify-center gap-3 overflow-x-scroll px-5"
-			>
+			<div class="hide-scrollbar mt-8 flex justify-center gap-3 overflow-x-scroll px-5">
 				{#each data.person.links as link, index}
 					{@const isImage = link.icon.includes('.')}
 					{#if isImage}
 						<a
 							href={link.href}
+							target="_blank"
 							class="flex shrink-0 flex-col items-center gap-4 transition duration-[750ms] {isMenuOpen
 								? 'opacity-100'
 								: 'opacity-0'}"
@@ -110,6 +109,7 @@
 						{@const IconComponent = iconMap[link.icon as keyof typeof iconMap]}
 						<a
 							href={link.href}
+							target="_blank"
 							class="flex shrink-0 flex-col items-center gap-4 transition duration-[750ms] {isMenuOpen
 								? 'opacity-100'
 								: 'opacity-0'}"
