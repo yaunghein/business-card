@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { scale } from 'svelte/transition';
+	import { enhance } from '$app/forms';
 	import Lenis from 'lenis';
 	import gsap from 'gsap';
 	import Logo from '$lib/components/svgs/logo.svelte';
@@ -12,6 +13,7 @@
 	import Seamless from '$lib/components/icons/seamless.svelte';
 	import CheckboxChecked from '$lib/components/icons/checkbox-checked.svelte';
 	import CheckboxUnchecked from '$lib/components/icons/checkbox-unchecked.svelte';
+	import type { SubmitFunction } from './$types';
 
 	const SECTIONS = {
 		MASTERPIECES: 'masterpieces',
@@ -69,8 +71,6 @@
 		});
 	});
 
-	$inspect({ currentSection });
-
 	const navItems = [
 		{ label: 'The Masterpieces', href: `#${SECTIONS.MASTERPIECES}` },
 		{ label: 'How It Works', href: `#${SECTIONS.HOW_IT_WORKS}` },
@@ -82,11 +82,35 @@
 		{ image: '/images/iPhone 13-2.webp', alt: 'Demo 2' },
 		{ image: '/images/iPhone 13-3.webp', alt: 'Demo 3' }
 	];
+
+	let isSubmitting = $state(false);
+	let isSuccess = $state(false);
+	let error = $state('');
+
+	const submit: SubmitFunction = ({ formData }) => {
+		const { email, firstname, customer_groups } = Object.fromEntries(formData);
+		if (!email || !firstname || !customer_groups) {
+			return;
+		}
+		isSubmitting = true;
+
+		return async ({ result }) => {
+			switch (result.type) {
+				case 'success':
+					isSuccess = true;
+					break;
+				case 'error':
+					error = result.error?.message || 'An error occurred';
+					break;
+			}
+			isSubmitting = false;
+		};
+	};
 </script>
 
-<!-- <svelte:head>
+<svelte:head>
 	<script src="https://js-na2.hsforms.net/forms/embed/243709896.js" defer></script>
-</svelte:head> -->
+</svelte:head>
 
 <header class="z-10 bg-dark px-4 sm:px-[4.5rem]">
 	<div class="flex items-center justify-center border-b border-white/10 py-7 sm:py-[3.25rem]">
@@ -204,7 +228,7 @@
 				Your card, your identity, brought to life in 3D.
 			</p>
 		</div>
-		<div class="border-t border-white/10 px-14 py-20 sm:border-l">
+		<div class="border-t border-white/10 px-14 py-20 sm:border-l sm:border-t-0">
 			<div class="mb-7 aspect-square w-20">
 				<Seamless />
 			</div>
@@ -215,7 +239,7 @@
 				Save contact details with one tap.
 			</p>
 		</div>
-		<div class="border-t border-white/10 px-14 py-20 sm:border-l">
+		<div class="border-t border-white/10 px-14 py-20 sm:border-l sm:border-t-0">
 			<div class="mb-7 aspect-square w-20">
 				<Timeless />
 			</div>
@@ -241,85 +265,130 @@
 		data-form-id="418657fc-e08b-4981-a0e9-6410f2b7c0f9"
 		data-portal-id="243709896"
 	></div> -->
-	<form action="" class="mx-auto grid w-full max-w-[39.88rem] gap-8 px-4 sm:px-0">
-		<div class="relative h-[3.13rem] w-full">
-			<select
-				name="title"
-				class="h-full w-full appearance-none border border-white/10 bg-transparent px-4 text-sm font-light tracking-[0.1rem] transition duration-500 focus:border-white/50 focus:outline-none sm:px-6"
-			>
-				<option value="">Title</option>
-				<option value="">Card 1</option>
-			</select>
-			<div class="absolute right-2 top-1/2 aspect-square w-6 -translate-y-1/2 sm:right-3">
-				<svg
-					width="100%"
-					height="100%"
-					viewBox="0 0 24 24"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
+	{#if isSuccess}
+		<div class="mx-auto grid min-h-96 w-full max-w-[39.88rem] gap-8 px-4 sm:px-0">
+			<div class="flex flex-col items-center justify-center gap-8">
+				<div
+					class="text-center text-sm font-light uppercase leading-normal tracking-[0.1rem] sm:text-sm"
 				>
-					<mask
-						id="mask0_926_75"
-						style="mask-type:alpha"
-						maskUnits="userSpaceOnUse"
-						x="0"
-						y="0"
-						width="24"
-						height="24"
-					>
-						<rect width="24" height="24" fill="#D9D9D9" />
-					</mask>
-					<g mask="url(#mask0_926_75)">
-						<path d="M12 15L7 10H17L12 15Z" fill="currentColor" />
-					</g>
-				</svg>
-			</div>
-		</div>
-
-		<input
-			name="name"
-			type="text"
-			placeholder="Name"
-			autocomplete="off"
-			class="h-[3.13rem] w-full appearance-none border border-white/10 bg-transparent px-4 text-sm font-light tracking-[0.1rem] transition duration-500 placeholder:text-sm placeholder:tracking-[0.1rem] placeholder:text-white hover:border-white/20 focus:border-white/50 focus:outline-none sm:px-6"
-		/>
-
-		<input
-			name="email"
-			placeholder="Email Address"
-			type="email"
-			autocomplete="off"
-			class="h-[3.13rem] w-full appearance-none border border-white/10 bg-transparent px-4 text-sm font-light tracking-[0.1rem] transition duration-500 placeholder:text-sm placeholder:tracking-[0.1rem] placeholder:text-white hover:border-white/20 focus:border-white/50 focus:outline-none sm:px-6"
-		/>
-
-		<textarea
-			name="message"
-			placeholder="Type Message Here"
-			autocomplete="off"
-			class="min-h-[6.63rem] w-full appearance-none border border-white/10 bg-transparent px-4 py-[0.8rem] text-sm font-light tracking-[0.1rem] transition duration-500 placeholder:text-sm placeholder:tracking-[0.1rem] placeholder:text-white hover:border-white/20 focus:border-white/50 focus:outline-none sm:px-6"
-		></textarea>
-
-		<div class="flex cursor-pointer items-start gap-3 sm:gap-6">
-			<div class="aspect-square w-5 shrink-0 translate-y-[0.3rem] sm:w-6 sm:translate-y-0">
-				<CheckboxUnchecked />
-			</div>
-			<label for="consent" class="cursor-pointer">
-				<input type="checkbox" name="consent" class="sr-only" />
-				<span class="text-xs font-light leading-normal tracking-[0.1rem] sm:text-sm">
-					I would like to receive marketing communications on products, services and events offered
-					by La Persona. I understand these communications may be personalized to me based on my
-					interests, preferences and use of products and services, including invitations to provide
-					customer experience feedback.
+					Application received.
+				</div>
+				<span
+					class="max-w-[18rem] text-center text-xs font-light leading-normal tracking-[0.1rem] sm:max-w-[20rem] sm:text-sm"
+				>
+					The journey to your bespoke digital identity begins now. Expect a personal introduction
+					from our team within the day to elevate your digital presence.
 				</span>
-			</label>
+				<button
+					onclick={() => (isSuccess = false)}
+					class="group mt-2 w-[7rem] place-self-center rounded-full border border-white/10 py-3 text-xs font-light uppercase leading-[1] tracking-[0.1rem] transition-all duration-500 hover:bg-white hover:text-dark sm:mt-2 sm:w-[7rem] sm:py-3 sm:text-xs"
+				>
+					<AnimatedText text="Got it!" />
+				</button>
+			</div>
 		</div>
-
-		<button
-			class="group mt-5 w-[15rem] place-self-center rounded-full border border-white/10 py-3 text-xs font-light uppercase leading-[1] tracking-[0.1rem] transition-all duration-500 hover:bg-[#1d1d1d] sm:mt-10 sm:w-[19.05rem] sm:py-4 sm:text-sm"
+	{:else}
+		<form
+			method="POST"
+			use:enhance={submit}
+			class="mx-auto grid w-full max-w-[39.88rem] gap-8 px-4 sm:px-0"
 		>
-			<AnimatedText text="explore our craft" />
-		</button>
-	</form>
+			<input
+				name="email"
+				type="email"
+				placeholder="Email"
+				autocomplete="off"
+				required
+				class="h-[2.8rem] w-full appearance-none border border-white/10 bg-transparent px-4 text-sm font-light tracking-[0.1rem] transition duration-500 placeholder:text-sm placeholder:tracking-[0.1rem] placeholder:text-white hover:border-white/20 focus:border-white/50 focus:outline-none sm:h-[3.13rem] sm:px-6"
+			/>
+			<input
+				name="firstname"
+				type="text"
+				placeholder="First Name"
+				autocomplete="off"
+				required
+				class="h-[2.8rem] w-full appearance-none border border-white/10 bg-transparent px-4 text-sm font-light tracking-[0.1rem] transition duration-500 placeholder:text-sm placeholder:tracking-[0.1rem] placeholder:text-white hover:border-white/20 focus:border-white/50 focus:outline-none sm:h-[3.13rem] sm:px-6"
+			/>
+			<input
+				name="lastname"
+				type="text"
+				placeholder="Last Name"
+				autocomplete="off"
+				class="h-[2.8rem] w-full appearance-none border border-white/10 bg-transparent px-4 text-sm font-light tracking-[0.1rem] transition duration-500 placeholder:text-sm placeholder:tracking-[0.1rem] placeholder:text-white hover:border-white/20 focus:border-white/50 focus:outline-none sm:h-[3.13rem] sm:px-6"
+			/>
+			<input
+				name="phone"
+				type="phone"
+				placeholder="Phone Number"
+				autocomplete="off"
+				class="h-[2.8rem] w-full appearance-none border border-white/10 bg-transparent px-4 text-sm font-light tracking-[0.1rem] transition duration-500 placeholder:text-sm placeholder:tracking-[0.1rem] placeholder:text-white hover:border-white/20 focus:border-white/50 focus:outline-none sm:h-[3.13rem] sm:px-6"
+			/>
+			<div class="relative h-[2.8rem] w-full sm:h-[3.13rem]">
+				<select
+					name="customer_groups"
+					required
+					class="h-full w-full appearance-none border border-white/10 bg-transparent px-4 text-sm font-light tracking-[0.1rem] transition duration-500 focus:border-white/50 focus:outline-none sm:px-6"
+				>
+					<option value="">Choose Your Experience Tier</option>
+					<option value="Founders' Club (Limited Offer)">Founders' Club (Limited Offer)</option>
+					<option value="Single Card">Single Card</option>
+					<option value="Multiple Cards">Multiple Cards</option>
+				</select>
+				<div class="absolute right-2 top-1/2 aspect-square w-6 -translate-y-1/2 sm:right-3">
+					<svg
+						width="100%"
+						height="100%"
+						viewBox="0 0 24 24"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<mask
+							id="mask0_926_75"
+							style="mask-type:alpha"
+							maskUnits="userSpaceOnUse"
+							x="0"
+							y="0"
+							width="24"
+							height="24"
+						>
+							<rect width="24" height="24" fill="#D9D9D9" />
+						</mask>
+						<g mask="url(#mask0_926_75)">
+							<path d="M12 15L7 10H17L12 15Z" fill="currentColor" />
+						</g>
+					</svg>
+				</div>
+			</div>
+			<textarea
+				name="message"
+				placeholder="Message"
+				autocomplete="off"
+				class="min-h-[6.63rem] w-full appearance-none border border-white/10 bg-transparent px-4 py-[0.8rem] text-sm font-light tracking-[0.1rem] transition duration-500 placeholder:text-sm placeholder:tracking-[0.1rem] placeholder:text-white hover:border-white/20 focus:border-white/50 focus:outline-none sm:px-6"
+			></textarea>
+
+			<div class="flex cursor-pointer items-start gap-3 sm:gap-6">
+				<span class="text-xs font-light leading-normal tracking-[0.1rem] sm:text-sm">
+					By submitting this form, you'll receive replies, occasional updates, exclusive offers, and
+					stories from our world of digital elegance. We only share what's meaningful & no spam,
+					ever. Your information stays private and secure.
+				</span>
+			</div>
+
+			{#if error}
+				<div class="flex cursor-pointer items-start gap-3 sm:gap-6">
+					<span class="text-xs font-light leading-normal tracking-[0.1rem] text-red-600 sm:text-sm">
+						{error}
+					</span>
+				</div>
+			{/if}
+
+			<button
+				class="group mt-5 w-[15rem] place-self-center rounded-full border border-white/10 py-3 text-xs font-light uppercase leading-[1] tracking-[0.1rem] transition-all duration-500 hover:bg-white hover:text-dark sm:mt-10 sm:w-[19.05rem] sm:py-4 sm:text-sm"
+			>
+				<AnimatedText text={isSubmitting ? 'Submitting...' : 'Submit'} />
+			</button>
+		</form>
+	{/if}
 </section>
 
 <footer
