@@ -80,13 +80,13 @@
 				<div
 					class="text-center text-sm font-light uppercase leading-normal tracking-[0.1rem] sm:text-sm"
 				>
-					Application received.
+					INQUIRY RECEIVED.
 				</div>
 				<span
-					class="-mt-1 max-w-[18rem] text-center text-xs font-light leading-normal tracking-[0.1rem] sm:max-w-[20rem] sm:text-sm"
+					class="-mt-1 max-w-[18rem] text-center text-xs font-light leading-normal tracking-[0.1rem] sm:max-w-[19rem] sm:text-sm"
 				>
-					The journey to your bespoke digital identity begins now. Expect a personal introduction
-					from our team within the day to elevate your digital presence.
+					Your bespoke digital identity begins now. Our team will reach out personally within the
+					day.
 				</span>
 				<a
 					href="/"
