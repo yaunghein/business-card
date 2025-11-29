@@ -69,6 +69,14 @@
 				onLeaveBack: () => index === 0 && (currentSection = null)
 			});
 		});
+
+		ScrollTrigger.create({
+			trigger: '#reveal-container',
+			start: 'top top',
+			end: 'bottom bottom',
+			scrub: 1.2,
+			animation: gsap.timeline().to('#reveal-mask', { borderWidth: 0 }).to({}, { duration: 0.25 })
+		});
 	});
 
 	const navItems = [
@@ -202,10 +210,18 @@
 			Tailored for You,<br /> Step by Step
 		</h2>
 	</div>
-	<div class="flex flex-col gap-16 px-4 sm:gap-[7.5rem] sm:px-[4.5rem]">
-		<TwoColumn />
-		<TwoColumn isReversed={true} />
-		<TwoColumn />
+</section>
+
+<section>
+	<div id="reveal-container" class="relative h-[200dvh] w-full">
+		<div class="sticky top-14 h-[calc(100dvh-3.5rem)] w-full">
+			<img
+				src="/images/reveal-image.webp"
+				class="absolute inset-0 h-full w-full object-cover"
+				alt="La Persona Wallpaper"
+			/>
+			<div id="reveal-mask" class="relative h-full w-full border-[7.5rem] border-dark"></div>
+		</div>
 	</div>
 </section>
 
