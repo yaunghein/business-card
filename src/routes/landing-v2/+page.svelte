@@ -14,6 +14,7 @@
 	import CheckboxChecked from '$lib/components/icons/checkbox-checked.svelte';
 	import CheckboxUnchecked from '$lib/components/icons/checkbox-unchecked.svelte';
 	import type { SubmitFunction } from './$types';
+	import clx from '$lib/utils/clx';
 
 	const SECTIONS = {
 		MASTERPIECES: 'masterpieces',
@@ -75,7 +76,40 @@
 			start: 'top top',
 			end: 'bottom bottom',
 			scrub: 1.2,
-			animation: gsap.timeline().to('#reveal-mask', { borderWidth: 0 }).to({}, { duration: 0.25 })
+			animation: gsap
+				.timeline()
+				.to('#reveal-mask', { borderWidth: 0 })
+				// .to('#line', { width: '100%' }, '<')
+				.to({}, { duration: 0.4 })
+		});
+
+		ScrollTrigger.create({
+			trigger: '#how-it-works-scroll-container',
+			start: 'top top',
+			end: 'bottom bottom',
+			scrub: 1.2,
+			animation: gsap
+				.timeline()
+				.to('#circle-1', { strokeDasharray: '283 0', duration: 1 }, 0)
+				.to('#how-it-works-line-right-1', { width: '100%', duration: 2 })
+				.to(
+					'#how-it-works-scroll-wrapper',
+					{
+						x: () => {
+							const wrapper = document.getElementById('how-it-works-scroll-wrapper');
+							return -(wrapper!.scrollWidth - window.innerWidth);
+						},
+						ease: 'none',
+						duration: 8
+					},
+					'<50%'
+				)
+				.to('#how-it-works-line-left-2', { width: '100%', duration: 2 }, 3)
+				.to('#circle-2', { strokeDasharray: '283 0', duration: 1 }, 5)
+				.to('#how-it-works-line-right-2', { width: '100%', duration: 2 }, 6)
+				.to('#how-it-works-line-left-3', { width: '100%', duration: 2 }, 8)
+				.to('#circle-3', { strokeDasharray: '283 0', duration: 1 }, 10)
+				.to('#how-it-works-line-right-3', { width: '100%', duration: 2 }, 11)
 		});
 	});
 
@@ -210,7 +244,77 @@
 			Tailored for You,<br /> Step by Step
 		</h2>
 	</div>
+
+	<div id="how-it-works-scroll-container" class="relative h-[400dvh] w-full">
+		<div class="sticky top-14 h-[calc(100dvh-3.5rem)] w-full overflow-hidden">
+			<div class="flex h-full w-full" id="how-it-works-scroll-wrapper">
+				<div id="how-it-works-scroll-item-1" class="h-full w-full shrink-0">
+					{@render howItWorksItem(
+						'1',
+						'Discover',
+						'Schedule a meeting with us and explore what your digital identity could become. In this step, we learn your goals, your style, and the impression you want to leave.Shaping the foundation for a card built uniquely around you.'
+					)}
+				</div>
+				<div id="how-it-works-scroll-item-1" class="h-full w-full shrink-0">
+					{@render howItWorksItem(
+						'2',
+						'design',
+						'Work with us to craft your personalized masterpiece.From visual direction to functional details, every choice is intentional. We refine, iterate, and shape a design that reflects your presence with clarity and distinction.'
+					)}
+				</div>
+				<div id="how-it-works-scroll-item-1" class="h-full w-full shrink-0">
+					{@render howItWorksItem(
+						'3',
+						'deliver',
+						'Receive your bespoke digital card — polished, optimized, and ready to represent you anywhere. Share it instantly, update it easily, and start making connections that remember who you are.'
+					)}
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
+
+{#snippet howItWorksItem(number: string, title: string, body: string)}
+	<div class="flex h-full w-full flex-col justify-center">
+		<div class="flex w-full items-center gap-0">
+			<div class={clx('flex-1', number !== '1' && 'mask-dots h-[2.5rem]  bg-white/20')}>
+				<div id="how-it-works-line-left-{number}" class="h-full w-0 bg-white"></div>
+			</div>
+			<div class="relative aspect-square w-16 shrink-0">
+				<svg class="absolute inset-0" viewBox="0 0 100 100">
+					<circle
+						cx="50"
+						cy="50"
+						r="45"
+						fill="none"
+						stroke="white"
+						stroke-width="2"
+						stroke-dasharray="0 1000"
+						id="circle-{number}"
+					/>
+				</svg>
+				<div
+					class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl leading-none"
+				>
+					{number}
+				</div>
+			</div>
+			<div class={clx('flex-1', number !== '3' && 'mask-dots h-[2.5rem]  bg-white/20')}>
+				<div id="how-it-works-line-right-{number}" class="h-full w-0 bg-white"></div>
+			</div>
+		</div>
+		<h3
+			class="my-[3.5rem] text-center text-base font-light uppercase leading-[1.5] tracking-[0.2rem] sm:text-[2rem] sm:tracking-[0.3rem]"
+		>
+			{title}
+		</h3>
+		<p
+			class="mx-auto max-w-[27rem] text-center text-sm font-light leading-normal tracking-[0.0875rem]"
+		>
+			{body}
+		</p>
+	</div>
+{/snippet}
 
 <section>
 	<div id="reveal-container" class="relative h-[200dvh] w-full">
@@ -220,6 +324,9 @@
 				class="absolute inset-0 h-full w-full object-cover"
 				alt="La Persona Wallpaper"
 			/>
+			<!-- <div class="mask-dots absolute top-1/2 h-[2.5rem] w-full bg-red-500">
+				<div class="absolute h-full w-0 bg-white" id="line"></div>
+			</div> -->
 			<div id="reveal-mask" class="relative h-full w-full border-[7.5rem] border-dark"></div>
 		</div>
 	</div>

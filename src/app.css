@@ -34,3 +34,14 @@ html {
 	white-space: nowrap;
 	border: 0;
 }
+
+.mask-dots {
+	-webkit-mask-image: url('/masks/dots.svg');
+	mask-image: url('/masks/dots.svg');
+	-webkit-mask-repeat: repeat-x;
+	mask-repeat: repeat-x;
+	-webkit-mask-size: 2.8125rem 2.5rem;
+	mask-size: 2.8125rem 2.5rem;
+	-webkit-mask-position: left center;
+	mask-position: left center;
+}
