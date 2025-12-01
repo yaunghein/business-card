@@ -80,7 +80,7 @@
 				.timeline()
 				.to('#reveal-mask', { borderWidth: 0 })
 				// .to('#line', { width: '100%' }, '<')
-				.to({}, { duration: 0.4 })
+				.to({}, { duration: 0.2 })
 		});
 
 		ScrollTrigger.create({
@@ -109,7 +109,7 @@
 				.to('#how-it-works-line-right-2', { width: '100%', duration: 2 }, 6)
 				.to('#how-it-works-line-left-3', { width: '100%', duration: 2 }, 8)
 				.to('#circle-3', { strokeDasharray: '283 0', duration: 1 }, 10)
-				.to('#how-it-works-line-right-3', { width: '100%', duration: 2 }, 11)
+				.to({}, { duration: 0.75 })
 		});
 	});
 
@@ -276,11 +276,11 @@
 
 {#snippet howItWorksItem(number: string, title: string, body: string)}
 	<div class="flex h-full w-full flex-col justify-center">
-		<div class="flex w-full items-center gap-0">
+		<div class="flex w-full items-center gap-2 sm:gap-0">
 			<div class={clx('flex-1', number !== '1' && 'mask-dots h-[2.5rem]  bg-white/20')}>
 				<div id="how-it-works-line-left-{number}" class="h-full w-0 bg-white"></div>
 			</div>
-			<div class="relative aspect-square w-16 shrink-0">
+			<div class="relative aspect-square w-14 shrink-0 sm:w-16">
 				<svg class="absolute inset-0" viewBox="0 0 100 100">
 					<circle
 						cx="50"
@@ -294,7 +294,7 @@
 					/>
 				</svg>
 				<div
-					class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl leading-none"
+					class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl leading-none sm:text-2xl"
 				>
 					{number}
 				</div>
@@ -304,12 +304,14 @@
 			</div>
 		</div>
 		<h3
-			class="my-[3.5rem] text-center text-base font-light uppercase leading-[1.5] tracking-[0.2rem] sm:text-[2rem] sm:tracking-[0.3rem]"
+			class="my-10 text-center text-base font-light uppercase leading-[1.5] tracking-[0.2rem] sm:my-[3.5rem] sm:text-[2rem] sm:tracking-[0.3rem]"
 		>
 			{title}
 		</h3>
 		<p
-			class="mx-auto max-w-[27rem] text-center text-sm font-light leading-normal tracking-[0.0875rem]"
+			class="mx-auto {number === '3'
+				? 'max-w-[18rem]'
+				: 'max-w-[21rem]'} text-center text-xs font-light leading-normal tracking-[0.0875rem] sm:max-w-[27rem] sm:text-sm"
 		>
 			{body}
 		</p>
@@ -318,7 +320,7 @@
 
 <section>
 	<div id="reveal-container" class="relative h-[200dvh] w-full">
-		<div class="sticky top-14 h-[calc(100dvh-3.5rem)] w-full">
+		<div class="sticky top-0 h-[100dvh] w-full sm:top-14 sm:h-[calc(100dvh-3.5rem)]">
 			<img
 				src="/images/reveal-image.webp"
 				class="absolute inset-0 h-full w-full object-cover"
@@ -327,7 +329,10 @@
 			<!-- <div class="mask-dots absolute top-1/2 h-[2.5rem] w-full bg-red-500">
 				<div class="absolute h-full w-0 bg-white" id="line"></div>
 			</div> -->
-			<div id="reveal-mask" class="relative h-full w-full border-[7.5rem] border-dark"></div>
+			<div
+				id="reveal-mask"
+				class="relative h-full w-full border-[3.5rem] border-dark sm:border-[7.5rem]"
+			></div>
 		</div>
 	</div>
 </section>
@@ -377,19 +382,27 @@
 </section>
 
 <section>
-	<div class="flex h-[100dvh] w-full flex-col items-center justify-center gap-[3.5rem]">
+	<div class="relative flex h-[100dvh] w-full flex-col items-center justify-center gap-[3.5rem]">
+		<div class="absolute inset-0 h-full w-full overflow-hidden">
+			<video autoplay loop muted playsinline class="h-full w-full object-cover">
+				<source src="/videos/handshake.mp4" type="video/mp4" />
+			</video>
+		</div>
+		<div class="absolute inset-0 h-full w-full bg-dark/30"></div>
 		<h2
-			class="mx-auto max-w-[20rem] text-center text-xl font-light uppercase leading-[1.5] tracking-[0.2rem] sm:max-w-[40rem] sm:text-[2.5rem] sm:tracking-[0.3rem]"
+			class="relative mx-auto -mb-5 max-w-[20rem] text-center text-xl font-light uppercase leading-[1.5] tracking-[0.2rem] sm:max-w-[40rem] sm:text-[2.5rem] sm:tracking-[0.3rem]"
 		>
 			Stand Out.<br />Be Remembered.
 		</h2>
-		<p class="mx-auto max-w-[18rem] text-center text-sm font-light leading-normal sm:max-w-[18rem]">
+		<p
+			class="relative mx-auto max-w-[18rem] text-center text-sm font-light leading-normal sm:max-w-[18rem]"
+		>
 			Your next-level business card is a few steps away. Tell us who you are. We’ll take care of the
 			rest.
 		</p>
 		<a
 			href="#{SECTIONS.COMMISSION_US}"
-			class="group w-[15rem] rounded-full border border-white/10 py-3 text-xs font-light uppercase leading-[1] tracking-[0.1rem] transition-all duration-500 hover:bg-white hover:text-dark sm:w-[19.05rem] sm:py-4 sm:text-sm"
+			class="group relative w-[15rem] rounded-full border border-white/10 py-3 text-xs font-light uppercase leading-[1] tracking-[0.1rem] transition-all duration-500 hover:bg-white hover:text-dark sm:w-[19.05rem] sm:py-4 sm:text-sm"
 		>
 			<AnimatedText text="commission your card" />
 		</a>
