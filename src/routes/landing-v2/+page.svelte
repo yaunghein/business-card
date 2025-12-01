@@ -376,6 +376,26 @@
 	</div>
 </section>
 
+<section>
+	<div class="flex h-[100dvh] w-full flex-col items-center justify-center gap-[3.5rem]">
+		<h2
+			class="mx-auto max-w-[20rem] text-center text-xl font-light uppercase leading-[1.5] tracking-[0.2rem] sm:max-w-[40rem] sm:text-[2.5rem] sm:tracking-[0.3rem]"
+		>
+			Stand Out.<br />Be Remembered.
+		</h2>
+		<p class="mx-auto max-w-[18rem] text-center text-sm font-light leading-normal sm:max-w-[18rem]">
+			Your next-level business card is a few steps away. Tell us who you are. We’ll take care of the
+			rest.
+		</p>
+		<a
+			href="#{SECTIONS.COMMISSION_US}"
+			class="group w-[15rem] rounded-full border border-white/10 py-3 text-xs font-light uppercase leading-[1] tracking-[0.1rem] transition-all duration-500 hover:bg-white hover:text-dark sm:w-[19.05rem] sm:py-4 sm:text-sm"
+		>
+			<AnimatedText text="commission your card" />
+		</a>
+	</div>
+</section>
+
 <section class="pb-[3.5rem] pt-0 sm:pb-[7.5rem] sm:pt-[7.5rem]" id={SECTIONS.COMMISSION_US}>
 	<h2
 		class="mx-auto mb-[4.5rem] max-w-[20rem] text-center text-xl font-light uppercase leading-[1.5] tracking-[0.2rem] sm:max-w-[40rem] sm:text-[2.5rem] sm:tracking-[0.3rem]"
