@@ -409,7 +409,7 @@
 	</div>
 </section>
 
-<section class="pb-[3.5rem] pt-0 sm:pb-[7.5rem] sm:pt-[7.5rem]" id={SECTIONS.COMMISSION_US}>
+<section class="py-[3.5rem] sm:py-[7.5rem]" id={SECTIONS.COMMISSION_US}>
 	<h2
 		class="mx-auto mb-[4.5rem] max-w-[20rem] text-center text-xl font-light uppercase leading-[1.5] tracking-[0.2rem] sm:max-w-[40rem] sm:text-[2.5rem] sm:tracking-[0.3rem]"
 	>
