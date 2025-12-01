@@ -82,6 +82,7 @@ export default [
 			'https://my.spline.design/aungpyaedigitalbusinesscard-7a4462430bd14bd687b2039df05de743/',
 		vcf: '/vcfs/apk.vcf',
 		phone: '0626365372',
+		email: 'aungpyaekyaw200@gmail.com',
 		links: [
 			{
 				icon: 'world',
@@ -111,6 +112,7 @@ export default [
 		spline: 'https://my.spline.design/yanaungdigitalbusinesscard-277b9e5b63017458131b2ddd22407e38/',
 		vcf: '/vcfs/yanaunghein.vcf',
 		phone: '0626366748',
+		email: 'yanaunghein311@gmail.com',
 		links: [
 			{
 				icon: 'world',
@@ -140,6 +142,7 @@ export default [
 		spline: 'https://my.spline.design/untitled-tRG860P00Pzj7FfnRp8PxZNH',
 		vcf: '/vcfs/minhtetmyet.vcf',
 		phone: '0626366748',
+		email: 'minhtetmyet24@gmail.com',
 		links: [
 			{
 				icon: 'directMessage',
