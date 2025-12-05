@@ -27,8 +27,10 @@
 		"vite": "^5.4.11"
 	},
 	"dependencies": {
+		"@splinetool/runtime": "^1.12.6",
 		"@tailwindcss/typography": "^0.5.15",
 		"@vercel/analytics": "^1.5.0",
+		"add": "^2.0.6",
 		"gsap": "^3.12.7",
 		"lenis": "^1.2.3",
 		"resend": "^6.5.2"
