@@ -111,6 +111,26 @@
 				.to('#circle-3', { strokeDasharray: '283 0', duration: 1 }, 10)
 				.to({}, { duration: 0.75 })
 		});
+
+		const videoElement = document.getElementById('video') as HTMLVideoElement;
+		if (videoElement) {
+			ScrollTrigger.create({
+				trigger: videoElement,
+				start: 'top bottom',
+				end: 'bottom top',
+				onEnter: () => {
+					const playPromise = videoElement.play();
+					if (playPromise !== undefined) {
+						playPromise.catch((e) => {
+							console.log(e);
+						});
+					}
+				},
+				onLeave: () => videoElement.pause(),
+				onEnterBack: () => videoElement.play(),
+				onLeaveBack: () => videoElement.pause()
+			});
+		}
 	});
 
 	const navItems = [
@@ -384,7 +404,7 @@
 <section>
 	<div class="relative flex h-[100dvh] w-full flex-col items-center justify-center gap-[3.5rem]">
 		<div class="absolute inset-0 h-full w-full overflow-hidden">
-			<video autoplay loop muted playsinline class="h-full w-full object-cover">
+			<video id="video" loop muted playsinline class="h-full w-full object-cover">
 				<source src="/videos/handshake.mp4" type="video/mp4" />
 			</video>
 		</div>
