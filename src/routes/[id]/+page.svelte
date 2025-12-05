@@ -21,7 +21,7 @@
 	} as const;
 
 	let formData = $state({ name: '', phone: '' });
-	let isValid = $derived(!!formData.name && !!formData.phone);
+	let isValid = $derived(!!formData.name && /^\d{8,}$/.test(formData.phone.replace(/\s+/g, '')));
 	let isSubmitting = $state(false);
 	let isSuccess = $state(false);
 	let error = $state('');
