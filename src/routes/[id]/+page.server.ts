@@ -17,7 +17,7 @@ export function load({ params }) {
 export const actions: Actions = {
 	default: async ({ request }) => {
 		const formData = Object.fromEntries(await request.formData());
-		const { name, email, phone, company, ownerEmail } = formData;
+		const { name, email, phone, dialCode, company, ownerEmail } = formData;
 
 		const response = await resend.emails.send({
 			from: 'La Persona <contact@exchange.la-persona.com>',
@@ -93,7 +93,7 @@ export const actions: Actions = {
 				width: 100%;
 				table-layout: fixed;
 				background-color: #f4f4f4; /* Light Background */
-				padding: 0 40px 0;
+				padding: 0;
 			}
 			.main-container {
 				max-width: 600px;
@@ -251,7 +251,7 @@ export const actions: Actions = {
 								<p>
 									<span class="label">Phone:</span>
 									<!-- Updated inline color to dark for light theme -->
-									<span style="color: #121212">${phone}</span>
+									<span style="color: #121212">${dialCode} ${phone}</span>
 								</p>
 								<p>
 									<span class="label">Email:</span>

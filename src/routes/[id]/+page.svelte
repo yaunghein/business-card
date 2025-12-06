@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import Menu from '$lib/components/icons/menu.svelte';
-	import Phone from '$lib/components/icons/phone.svelte';
 	import Close from '$lib/components/icons/close.svelte';
 	import World from '$lib/components/icons/world.svelte';
 	import ArrowDown from '$lib/components/icons/arrow-down.svelte';
 	import DirectMessage from '$lib/components/icons/direct-message.svelte';
-	import AnimatedText from '$lib/components/animated-text.svelte';
+	import PhoneInput from '$lib/components/phone-input.svelte';
 	import type { SubmitFunction } from './$types';
 
 	let { data } = $props();
@@ -26,10 +25,14 @@
 	let isSuccess = $state(false);
 	let error = $state('');
 
-	const submit: SubmitFunction = ({ formData }) => {
+	const submit: SubmitFunction = async ({ formData, cancel }) => {
 		const { name, phone } = Object.fromEntries(formData);
 		if (!name || !phone) return;
 		isSubmitting = true;
+
+		// await new Promise((r) => setTimeout(r, 2000));
+		// isSubmitting = false;
+		// cancel();
 
 		return async ({ result }) => {
 			console.log({ result });
@@ -155,17 +158,7 @@
 								class="h-[2.8rem] w-full appearance-none border border-white/10 bg-transparent px-4 text-sm font-light tracking-[0.1rem] transition duration-500 placeholder:text-xs placeholder:tracking-[0.1rem] placeholder:text-white/20 hover:border-white/20 focus:border-white/50 focus:outline-none sm:h-[3.13rem] sm:px-6"
 							/>
 						</label>
-						<label class="flex flex-col gap-3 text-xs font-light tracking-[0.1rem]">
-							Phone Number
-							<input
-								name="phone"
-								type="phone"
-								autocomplete="off"
-								required
-								bind:value={formData.phone}
-								class="h-[2.8rem] w-full appearance-none border border-white/10 bg-transparent px-4 text-sm font-light tracking-[0.1rem] transition duration-500 placeholder:text-xs placeholder:tracking-[0.1rem] placeholder:text-white/20 hover:border-white/20 focus:border-white/50 focus:outline-none sm:h-[3.13rem] sm:px-6"
-							/>
-						</label>
+						<PhoneInput bind:phone={formData.phone} />
 						<label class="flex flex-col gap-3 text-xs font-light tracking-[0.1rem]">
 							Email Address (Optional)
 							<input
@@ -205,10 +198,21 @@
 					<button
 						type="submit"
 						form="form"
-						disabled={!isValid}
-						class="w-full rounded-full border border-white/10 bg-white py-4 text-xs font-bold leading-[1] tracking-[0.1rem] text-dark transition-all duration-500 disabled:bg-white/10 disabled:text-white/20"
+						disabled={!isValid || isSubmitting}
+						class="relative w-full rounded-full border border-white/10 bg-white py-4 text-xs font-bold leading-[1] tracking-[0.1rem] text-dark transition-all duration-500 disabled:bg-white/10 disabled:text-white/20"
 					>
-						{isSubmitting ? 'Please wait...' : 'Exchange Contact'}
+						Exchange Contact
+						{#if isSubmitting}
+							<div class="absolute right-[0.65rem] top-1/2 -translate-y-1/2">
+								<div
+									class="inline-block size-6 animate-spin rounded-full border border-current border-t-transparent text-white/20"
+									role="status"
+									aria-label="loading"
+								>
+									<span class="sr-only">Loading...</span>
+								</div>
+							</div>
+						{/if}
 					</button>
 				{/if}
 				{#if error}
